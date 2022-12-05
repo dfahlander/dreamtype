@@ -1,9 +1,12 @@
-import { compositePrimKey } from "../attribs/compositePrimKey";
+import { compositePrimKey } from "./compositePrimKey";
 import { CTX } from "../engine/CTX.js";
-import { Constructor2Type, Declaration2Type } from "../engine/declaration2Type.js";
+import {
+  Constructor2Type,
+  Declaration2Type,
+} from "../engine/declaration2Type.js";
 import { PrimaryKey, TypeSymbol } from "../engine/symbols.js";
 import { TypeData, TypeOptions } from "../engine/TypeConfig.js";
-import { array } from "./array";
+import { array } from "../types/array";
 
 export function type<T>(
   typeOrValue: T,
@@ -50,7 +53,7 @@ export function type<T>(
     case "function":
     // Get weakmap cached freezed default instance or create one, unless there's a default.
     case "object":
-      return Object.create((typeOrValue as unknown) as object, {
+      return Object.create(typeOrValue as unknown as object, {
         _type: { get: () => typeData },
       });
     case "bigint":
@@ -81,7 +84,7 @@ type TEST = Declaration2Type<
   { primKey: true; with: () => [number] }
 >;
 
-const friends = (null as unknown) as Collection<Friend>;
+const friends = null as unknown as Collection<Friend>;
 friends.where({ age: { above: 3 } });
 friends.where({ age: { above: 4 } });
 friends.where({ obj: { is: "Array" } });
