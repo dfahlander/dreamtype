@@ -1,0 +1,8 @@
+{
+  "compilerOptions": {
+    "target": "es2020",
+    "alwaysStrict": true,
+    "declaration": true,
+    "outDir": "dist"
+  }
+}
