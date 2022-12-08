@@ -1,8 +1,11 @@
-import { Constructor2Type } from "../declaration2Type.js";
-import { PrimaryKey } from "../symbols.js";
+import { ConstructorToValue } from "../typings/ConstructorToValue.js";
+import { PrimaryKey } from "../typings/PrimaryKey";
+import { PrimKeyOptions } from "../typings/TypeOptions.js";
+import { _type } from "../engine/_type";
 
 export function primKey<T>(
-  typeOrValue: T
-): Constructor2Type<T> & PrimaryKey<Constructor2Type<T>> {
-  throw "";
+  type: T,
+  options?: PrimKeyOptions<T>
+): ConstructorToValue<T> & PrimaryKey<ConstructorToValue<T>> {
+  return _type(type, { ...options, primKey: true });
 }

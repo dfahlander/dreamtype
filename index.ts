@@ -1,2 +1,4 @@
+export * from "./typings/TypeData.js";
 export * from "./attribs/type.js";
-export * from "./types/array.js";
+export * from "./attribs/array.js";
+export * from "./engine/getTypeData.js";
