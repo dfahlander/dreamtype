@@ -10,6 +10,7 @@ export function getTypeData<T>(type: new (...args: any[]) => T): {
   (globalThis as any).dreamTypeDecl = true;
   try {
     rv = { ...(new type() as { [prop: string]: TypeData }) };
+    Object.freeze(rv);
     wm.set(type, rv);
     return rv as any;
   } finally {
