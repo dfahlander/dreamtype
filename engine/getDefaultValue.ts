@@ -1,3 +1,6 @@
+import "./_declaration_.js";
+import { getDeclarationMode, setDeclarationMode } from "./_declaration_.js";
+
 const wm = new WeakMap<Function, any>();
 export function getDefaultValue(type: Function) {
   if (wm.has(type)) return wm.get(type);
@@ -20,12 +23,12 @@ function generateDefaultValue(type: new (...args: any[]) => any) {
     case BigInt:
       return BigInt(0) as any;
     default: {
-      const previousDecl = typeof dreamTypeDecl === "boolean" && dreamTypeDecl;
-      (globalThis as any).dreamTypeDecl = false;
+      const previousDecl = getDeclarationMode();
+      setDeclarationMode(false);
       try {
         return new type();
       } finally {
-        (globalThis as any).dreamTypeDecl = previousDecl;
+        setDeclarationMode(previousDecl);
       }
     }
   }

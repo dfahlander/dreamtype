@@ -8,7 +8,7 @@ import { getTypeData } from "./getTypeData.js";
 
 export function _type(type: any, typeOptions?: Partial<TypeData>) {
   // Are we in declaration mode?
-  if (typeof dreamTypeDecl === "boolean" && dreamTypeDecl)
+  if (typeof _declaration_ === "boolean" && _declaration_)
     return createTypeData(type, typeOptions);
   // Runtime mode: type is a function unless chained, then it's a value.
   if (typeof type === "function") {
